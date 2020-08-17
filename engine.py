@@ -27,9 +27,10 @@ from engines import snowboydetect
 
 
 class Engines(Enum):
+    SNOWBOY = 'Snowboy'
     POCKET_SPHINX = 'PocketSphinx'
     PORCUPINE = 'Porcupine'
-    SNOWBOY = 'Snowboy'
+    PRECISE = 'Precise'
 
 
 SensitivityInfo = namedtuple('SensitivityInfo', 'min, max, step')
@@ -57,6 +58,8 @@ class Engine(object):
             return SensitivityInfo(0, 1, 0.1)
         elif engine_type is Engines.SNOWBOY:
             return SensitivityInfo(0, 1, 0.05)
+        elif engine_type is Engines.PRECISE:
+            return SensitivityInfo(0, 1, 0.1)
         else:
             raise ValueError("no sensitivity range for '%s'", engine_type.value)
 
@@ -132,6 +135,8 @@ class SnowboyEngine(Engine):
         keyword = keyword.lower()
         if keyword == 'alexa':
             model_relative_path = 'engines/snowboy/resources/alexa/alexa-avs-sample-app/alexa.umdl'
+        elif keyword == 'hi bixby':
+            model_relative_path = 'engines/snowboy/resources/models/hi_bixby.pmdl'
         else:
             model_relative_path = 'engines/snowboy/resources/models/%s.umdl' % keyword.replace(' ', '_')
 
@@ -161,3 +166,19 @@ class SnowboyEngine(Engine):
 
     def __str__(self):
         return 'Snowboy'
+
+class PreciseEngine(Engine):
+    def __init__(self, keyword, sensitivity):
+        keyword = keyword.lower()
+        model_relative_path = 'engines/precise/models/%s.pb' % keyword
+
+    def process(self, pcm):
+        assert pcm.dtype == np.int16
+
+        return self._precise.process(pcm)
+
+    def release(self):
+        self._precise.delete()
+
+    def __str__(self):
+        return 'Precise'

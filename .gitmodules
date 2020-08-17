@@ -4,3 +4,6 @@
 [submodule "engines/snowboy"]
 	path = engines/snowboy
 	url = git@github.com:Kitt-AI/snowboy.git
+[submodule "engines/precise"]
+	path = engines/precise
+	url = git@github.com:MycroftAI/mycroft-precise.git

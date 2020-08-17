@@ -105,7 +105,7 @@ def create_test_files(
         keyword_dataset,
         background_dataset,
         noise_dataset,
-        length_hour=24,
+        length_hour=0.1,
         snr_db=10):
     speech_parts, keyword_times_sec = _assemble_speech(keyword_dataset, background_dataset, length_hour)
     speech = _mix_noise(speech_parts, noise_dataset, snr_db)

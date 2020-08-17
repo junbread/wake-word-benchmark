@@ -3,3 +3,5 @@
 *.csv
 /*.wav
 /*.txt
+data
+result

@@ -1,9 +1,9 @@
 [submodule "engines/porcupine"]
 	path = engines/porcupine
-	url = git@github.com:Picovoice/Porcupine.git
+	url = https://github.com/Picovoice/Porcupine.git
 [submodule "engines/snowboy"]
 	path = engines/snowboy
-	url = git@github.com:Kitt-AI/snowboy.git
+	url = https://github.com/Kitt-AI/snowboy.git
 [submodule "engines/precise"]
 	path = engines/precise
-	url = git@github.com:MycroftAI/mycroft-precise.git
+	url = https://github.com/junbread/mycroft-precise.git
